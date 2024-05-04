@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Projeto de Visualização - Grupo B</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <script src="./src/main.js" type="module"></script>
+  </head>
+  <body>
+    <div class="heading">
+      <div class="row">
+        <p>UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - UFCG</p>
+        <p>Disciplina: Visualiza&ccedil;&atilde;o de Dados (TECC)</p>
+      </div>
+      <div class="row">
+        <p>CENTRO DE ENGENHARIA EL&Eacute;TRICA E INFORM&Aacute;TICA - CEEI</p>
+        <p>Professor: Maxwell Guimar&atilde;es de Oliveira</p>
+      </div>
+      <div class="row">
+        <p>
+          UNIDADE ACAD&Ecirc;MICA DE SISTEMAS E COMPUTA&Ccedil;&Atilde;O - UASC
+        </p>
+        <p>Período: 2023.2</p>
+      </div>
+    </div>
+
+    <div id="header" class="header">
+      <h2>Projeto de Visualização Interativa de Dados</h2>
+      <h4>
+        <span class="underline">Grupo B</span>: Lucas Raposo, Pedro Donato,
+        Ricardo Sena
+      </h4>
+      <!-- <p>&nbsp;</p> -->
+      <hr />
+      <h2 class="header-title">Título da visualização</h2>
+      <p class="description">
+        Breve resumo sobre os dados (e as histórias) visualizadas.
+      </p>
+    </div>
+
+    <div id="container-controls">
+      <div class="ano-slider-container">
+        <div class="ano-input">
+          <span>2010</span>
+          <input
+            type="range"
+            name="ano"
+            id="anoSelecionado"
+            min="2010"
+            max="2020"
+            value="2020"
+          />
+          <span>2020</span>
+        </div>
+        <p id="valorSelecionadoParagrafo"></p>
+      </div>
+      <button id="trocarBotao" class="btn-visualizacao-toggle">
+        Trocar Visualização
+      </button>
+    </div>
+
+    <div id="container"></div>
+
+    <footer id="footer">
+      <p>Dicas para interagir com a visualização:</p>
+      <ul>
+        <li>
+          Inserir aqui breves instruções para o usuário navegar na visualização
+          e usar o máximo dos recursos de interação disponíveis.
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
