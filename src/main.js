@@ -10,6 +10,19 @@ const valorSelecionadoParagrafo = document.querySelector(
 );
 const botao = document.querySelector("#trocarBotao");
 
+let rangeSelected = "top-10";
+const rangeMatch = {
+  "top-10": 10,
+  "top-30": 30,
+  todos: null,
+};
+const listRangeSelectorContainer = document.querySelector(
+  ".list-range-selector"
+);
+const listRangeSelectorGroup = document.querySelectorAll(
+  ".list-range-selector ul li input"
+);
+
 const myChart = echarts.init(dom, null, {
   renderer: "canvas",
   useDirtyRect: false,
@@ -131,6 +144,13 @@ function init() {
 
   function toggleOption() {
     options.current = options.current === "map" ? "bar" : "map";
+
+    if (options.current === "bar") {
+      listRangeSelectorContainer.style.display = "block";
+    } else {
+      listRangeSelectorContainer.style.display = "none";
+    }
+
     myChart.setOption(options[options.current], true);
   }
 
@@ -140,8 +160,23 @@ function init() {
     const anoSelecionado = inputRangeAno?.value;
     valorSelecionadoParagrafo.textContent = `Ano selecionado: ${anoSelecionado}`;
     options.map = criarMapOption(data[anoSelecionado]);
-    options.bar = criarBarOption(data[anoSelecionado]);
+    options.bar = criarBarOption(
+      data[anoSelecionado],
+      rangeMatch[rangeSelected]
+    );
     myChart.setOption(options[options.current], true);
+  });
+
+  listRangeSelectorGroup.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const anoSelecionado = inputRangeAno?.value;
+      rangeSelected = e.target.value || "top-10";
+      options.bar = criarBarOption(
+        data[anoSelecionado],
+        rangeMatch[rangeSelected]
+      );
+      myChart.setOption(options[options.current], true);
+    });
   });
 
   window.addEventListener("resize", myChart.resize);
