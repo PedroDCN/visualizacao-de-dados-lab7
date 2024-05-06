@@ -30,17 +30,17 @@ function criarMapOption(data) {
       max: max,
       inRange: {
         color: [
-          "#313695",
-          "#4575b4",
-          "#74add1",
-          "#abd9e9",
+          "#ffffbb",
           "#e0f3f8",
-          "#ffffbf",
-          "#fee090",
-          "#fdae61",
-          "#f46d43",
-          "#d73027",
-          "#a50026",
+          "#abd9e9",
+          "#74add1",
+          "#4575b4",
+          "#313695",
+          // "#fee090",
+          // "#fdae61",
+          // "#f46d43",
+          // "#d73027",
+          // "#a50026",
         ],
       },
       text: ["Alto", "Baixo"],
@@ -74,14 +74,14 @@ function criarMapOption(data) {
   };
 }
 
-function criarBarOption(data) {
+function criarBarOption(data, tam = 10) {
   data = [...data];
-  data
-    .sort(function (a, b) {
-      return a.value - b.value;
-    })
-    .reverse();
-  data = data.splice(0, 10).reverse();
+  data.sort(function (a, b) {
+    return a.value - b.value;
+  });
+  if (tam) {
+    data = data.reverse().splice(0, tam).reverse();
+  }
   return {
     title: {
       text: "Pedidos de patentes por 1 milhão de pessoas",
@@ -142,7 +142,6 @@ function init() {
     options.map = criarMapOption(data[anoSelecionado]);
     options.bar = criarBarOption(data[anoSelecionado]);
     myChart.setOption(options[options.current], true);
-    myChart.updateLabelLayout();
   });
 
   window.addEventListener("resize", myChart.resize);
